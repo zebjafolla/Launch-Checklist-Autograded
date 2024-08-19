@@ -118,6 +118,8 @@ describe('Test student work on helper functions', () => {
       expect(cargoStatus).toHaveTextContent("Cargo mass too heavy for launch");
    });
 
+
+
    test("Launch Checklist when cargo too heavy and fuel too low for launch", () => {
       // Shuttle should not be ready for launch, cargo too high, fuel too low
       studentFunctions.formSubmission(document, list, "Chris", "Bob", 0, 100000);
