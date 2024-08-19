@@ -30,7 +30,7 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
         return "Is a Number";
     }
  }
- 
+ //comment test
  function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     let pilotStatus = document.getElementById("pilotStatus");
     pilotStatus.innerHTML = "Pilot Ready";
