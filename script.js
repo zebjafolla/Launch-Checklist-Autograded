@@ -1,4 +1,4 @@
-// const { addDestinationInfo } = require("./scriptHelper");
+const { addDestinationInfo } = require("./scriptHelper");
 
 // Write your JavaScript code here!
 window.addEventListener('load', function(){
@@ -26,31 +26,31 @@ window.addEventListener('load', function(){
 
 window.addEventListener("load", function() {
 
-    let listedPlanets;
+    let planetsResponse;
     // Set listedPlanetsResponse equal to the value returned by calling myFetch()
     let listedPlanetsResponse = myFetch();
     listedPlanetsResponse.then(function (result) {
-        listedPlanets = result;
+        planetsResponse = result;
         console.log(listedPlanets);
     }).then(function () {
         console.log(listedPlanets);
         // Below this comment call the appropriate helper functions to pick a planet fom the list of planets and add that information to your destination.
-        let chosenPlanet = pickPlanet(listedPlanets);
-        let planetInfo;
-        for (let i = 0; i < listedPlanets.length; i ++)
-        {
-            if (listedPlanets[i].name === chosenPlanet)
-            {
-                planetInfo = listedPlanets[i];
-                break;
-            }
-        }
-        let name = planetInfo.name;
-        let diameter = planetInfo.diameter;
-        let star = planetInfo.star;
-        let distance = planetInfo.distance;
-        let moons = planetInfo.moons;
-        let imageUrl = planetInfo.image;
+        let chosenPlanet = pickPlanet(planetsResponse);
+        // let planetInfo;
+        // for (let i = 0; i < chosenPlanet.length; i ++)
+        // {
+        //     if (listedPlanets[i].name === chosenPlanet)
+        //     {
+        //         planetInfo = listedPlanets[i];
+        //         break;
+        //     }
+        // }
+        let name = chosenPlanet.name;
+        let diameter = chosenPlanet.diameter;
+        let star = chosenPlanet.star;
+        let distance = chosenPlanet.distance;
+        let moons = chosenPlanet.moons;
+        let imageUrl = chosenPlanet.image;
         addDestinationInfo(document, name, diameter, star, distance, moons, imageUrl);
     })
     

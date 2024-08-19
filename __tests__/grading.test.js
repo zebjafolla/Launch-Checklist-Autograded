@@ -12,7 +12,6 @@ var studentFunctions = require('../scriptHelper.js');
 let script = fs.readFileSync(path.resolve(__dirname, "../script.js"), 'utf8');
 
 const studentPlanet = studentFunctions.pickPlanet.toString();
-console.log(studentPlanet);
 
 const planetsResponse = [
    {
