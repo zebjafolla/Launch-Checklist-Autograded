@@ -64,7 +64,7 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
     if (validateInput(copilot) === "Is a Number" || validateInput(copilot) === "Empty")
     {
         launchStatus.style.color = "red";
-        copilotStatus.innerHTML = "You must enter a copilot."; 
+        copilotStatus.innerHTML = "You must enter a copilot name."; 
     }
     else
     {
