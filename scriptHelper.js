@@ -46,6 +46,8 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
     if (pilot === "" || copilot === "" || fuelLevel === "" || cargoLevel === "")
     {
         alert("No fields may be left blank.");
+        location.reload();
+        return;
     }
     if (validateInput(pilot) === "Is a Number" || validateInput(pilot) === "Empty")
     {
@@ -123,8 +125,10 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
     if (launchStatus.style.color === "red")
     {
         launchStatus.innerHTML = "Shuttle Not Ready for Launch";
+        
     }
     document.getElementById("faultyItems").style = "visibility: visible;";
+    
 
  }
  
