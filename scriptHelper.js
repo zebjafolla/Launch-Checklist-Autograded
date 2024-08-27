@@ -42,13 +42,12 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
     cargoStatus.innerHTML = "Cargo mass low enough for launch";
     let launchStatus = document.getElementById("launchStatus")
     launchStatus.innerHTML = "Awaiting Information Before Launch";
-    launchStatus.style.color = "green";
     if (pilot === "" || copilot === "" || fuelLevel === "" || cargoLevel === "")
     {
         alert("No fields may be left blank.");
-        location.reload();
         return;
     }
+    launchStatus.style.color = "green";
     if (validateInput(pilot) === "Is a Number" || validateInput(pilot) === "Empty")
     {
         launchStatus.style.color = "red";
