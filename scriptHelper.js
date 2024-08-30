@@ -14,24 +14,21 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
         <li>Number of Moons: ${moons}</li>
     </ol>
     <img src=${imageUrl}></img>`
- }
- 
- function validateInput(testInput) {
-    if (testInput === "")
-    {
-            return "Empty";
+}
+
+function validateInput(testInput) {
+    if (testInput === "") {
+        return "Empty";
     }
-    if (isNaN(testInput))
-    {
+    if (isNaN(testInput)) {
         return "Not a Number";
     }
-    if (!isNaN(testInput))
-    {
+    if (!isNaN(testInput)) {
         return "Is a Number";
     }
- }
- //comment test
- function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
+}
+//comment test
+function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     let pilotStatus = document.getElementById("pilotStatus");
     pilotStatus.innerHTML = "Pilot Ready";
     let copilotStatus = document.getElementById("copilotStatus")
@@ -42,112 +39,91 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
     cargoStatus.innerHTML = "Cargo mass low enough for launch";
     let launchStatus = document.getElementById("launchStatus")
     launchStatus.innerHTML = "Awaiting Information Before Launch";
-    if (pilot === "" || copilot === "" || fuelLevel === "" || cargoLevel === "")
-    {
+    if (pilot === "" || copilot === "" || fuelLevel === "" || cargoLevel === "") {
         alert("No fields may be left blank.");
         return;
     }
+    else if (validateInput(pilot) === "Is a Number" || validateInput(copilot) === "Is a Number") {
+        alert("You must enter a valid name (string) for pilot and copilot.")
+        return;
+    }
+
     launchStatus.style.color = "green";
-    if (validateInput(pilot) === "Is a Number" || validateInput(pilot) === "Empty")
-    {
+    if (validateInput(pilot) === "Is a Number" || validateInput(pilot) === "Empty") {
         launchStatus.style.color = "red";
         pilotStatus.innerHTML = "You must enter a pilot."
-    }
-    else
-    {
+    } else {
         pilotStatus.innerHTML = `Pilot ${pilot} is ready for launch`;
-        if (launchStatus.style.color === "green")
-        {
+        if (launchStatus.style.color === "green") {
             launchStatus.style.color = "green";
         }
     }
-    
-    if (validateInput(copilot) === "Is a Number" || validateInput(copilot) === "Empty")
-    {
+
+    if (validateInput(copilot) === "Is a Number" || validateInput(copilot) === "Empty") {
         launchStatus.style.color = "red";
-        copilotStatus.innerHTML = "You must enter a copilot name."; 
-    }
-    else
-    {
+        copilotStatus.innerHTML = "You must enter a copilot name.";
+    } else {
         copilotStatus.innerHTML = `Co-pilot ${copilot} is ready for launch`;
-        if (launchStatus.style.color === "green")
-            {
-                launchStatus.style.color = "green";
-            }
+        if (launchStatus.style.color === "green") {
+            launchStatus.style.color = "green";
+        }
     }
-    if (validateInput(fuelLevel) === "Not a Number" || validateInput(fuelLevel) === "Empty" || fuelLevel < 10000 == true)
-    {
-        if(validateInput(fuelLevel) === "Not a Number")
-        {
+    if (validateInput(fuelLevel) === "Not a Number" || validateInput(fuelLevel) === "Empty" || fuelLevel < 10000 == true) {
+        if (validateInput(fuelLevel) === "Not a Number") {
             fuelStatus.innerHTML = "Fuel level too low for launch";
         }
-        else
-        {
+        else {
             fuelStatus.innerHTML = `Fuel level too low for launch`;
         }
         launchStatus.style.color = "red";
+    } else {
+        if (launchStatus.style.color === "green") {
+            launchStatus.style.color = "green";
+        }
     }
-    else
-    {
-        if (launchStatus.style.color === "green")
-            {
-                launchStatus.style.color = "green";
-            }
-    }
-    if (validateInput(cargoLevel) === "Not a Number" || validateInput(cargoLevel) === "Empty" || cargoLevel > 10000 == true)
-    {
-        if(cargoLevel === "")
-        {
+    if (validateInput(cargoLevel) === "Not a Number" || validateInput(cargoLevel) === "Empty" || cargoLevel > 10000 == true) {
+        if (cargoLevel === "") {
             cargoStatus.innerHTML = `There is no cargo.`;
-        }
-        else if(validateInput(cargoLevel) === "Not a Number")
-        {
+        } else if (validateInput(cargoLevel) === "Not a Number") {
             cargoStatus.innerHTML = "Cargo mass too heavy for launch";
-        }
-        else
-        {
+        } else {
             cargoStatus.innerHTML = `Cargo mass too heavy for launch`;
         }
         launchStatus.style.color = "red";
+    } else {
+        if (launchStatus.style.color === "green") {
+            launchStatus.style.color = "green";
+        }
     }
-    else
-    {
-        if (launchStatus.style.color === "green")
-            {
-                launchStatus.style.color = "green";
-            }
-    }
-    if (launchStatus.style.color === "green")
-    {
+    if (launchStatus.style.color === "green") {
         launchStatus.innerHTML = "Shuttle is Ready for Launch";
     }
-    if (launchStatus.style.color === "red")
-    {
+    if (launchStatus.style.color === "red") {
         launchStatus.innerHTML = "Shuttle Not Ready for Launch";
-        
+
     }
     document.getElementById("faultyItems").style = "visibility: visible;";
-    
 
- }
- 
- async function myFetch() {
-     let planetsReturned;
- 
-     planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json").then( function(response) {
+
+}
+
+async function myFetch() {
+    let planetsReturned;
+
+    planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json").then(function (response) {
         return response.json();
     });
- 
-     return planetsReturned;
- }
- 
- function pickPlanet(planets) {
+
+    return planetsReturned;
+}
+
+function pickPlanet(planets) {
     let rand = Math.floor(Math.random() * planets.length);
     return planets[rand];
- }
- 
- module.exports.addDestinationInfo = addDestinationInfo;
- module.exports.validateInput = validateInput;
- module.exports.formSubmission = formSubmission;
- module.exports.pickPlanet = pickPlanet; 
- module.exports.myFetch = myFetch;
+}
+
+module.exports.addDestinationInfo = addDestinationInfo;
+module.exports.validateInput = validateInput;
+module.exports.formSubmission = formSubmission;
+module.exports.pickPlanet = pickPlanet;
+module.exports.myFetch = myFetch;
